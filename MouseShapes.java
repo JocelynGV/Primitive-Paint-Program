@@ -21,6 +21,15 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+
+/**
+ * File: MouseShapes
+ * Author: Jocelyn Varghese
+ * Date Created: Oct 29, 2022
+ * Date Modified: Oct 29, 2022
+ * Description: Create shapes of different colors and sizes in JavaFX
+ * */
+
 public class MouseShapes extends Application {
 	// Create pane for the canvas
 	Pane canvasPane = new Pane();
@@ -259,16 +268,8 @@ public class MouseShapes extends Application {
 		rectHeight = Double.parseDouble(tfRectHeight.getText());
 	}
 	
-	private void setStroke() {
-		
-	}
-	
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-}
-
-class CirclePane extends StackPane {
 	
 }
