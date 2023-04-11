@@ -36,14 +36,15 @@ public class MouseShapes extends Application {
 	
 	// Create text fields
 	TextField tfCircleRad = new TextField();
-	TextField tfRectWidth = new TextField();
-	TextField tfRectHeight = new TextField();
+	TextField tfSquareSide = new TextField();	
+//	TextField tfRectWidth = new TextField();
+
 	
 	// Create boolean for stroke
 	boolean hasStroke = false;
 	
 	// Change shape dimensions	
-	double radius = 5, rectHeight = 8, rectWidth = 16;
+	double radius = 5, squareSide = 10;
 	
 	Color color = Color.BLACK;
 	
@@ -58,14 +59,14 @@ public class MouseShapes extends Application {
 		
 		// Create some buttons!
 		Button btCircle = new Button("Circle");
-		Button btRect = new Button("Rectangle");
+		Button btSquare = new Button("Square");
 		Button btClear = new Button("Clear");
 		Button btUndo = new Button("Undo");
 
 		
 		// Put them in an Hbox Pane!
 		HBox hBox = new HBox(15);
-		hBox.getChildren().addAll(btCircle, btRect, btClear, btUndo);
+		hBox.getChildren().addAll(btCircle, btSquare, btClear, btUndo);
 		hBox.setAlignment(Pos.CENTER);
 		hBox.setPadding(new Insets(5, 5, 5, 5));
 		hBox.setStyle("-fx-background-color: gray;");
@@ -73,16 +74,16 @@ public class MouseShapes extends Application {
 		
 		// Create labels
 		Label lRadius = new Label("Radius: ");
-		Label lHeight = new Label("Height: ");
-		Label lWidth = new Label("Width: ");
+		Label lSide = new Label("Side length: ");
+//		Label lWidth = new Label("Width: ");
 		lRadius.setTextFill(Color.WHITE);
-		lHeight.setTextFill(Color.WHITE);
-		lWidth.setTextFill(Color.WHITE);
+		lSide.setTextFill(Color.WHITE);
+//		lWidth.setTextFill(Color.WHITE);
 		
 		// Change text fields' sizes
 		tfCircleRad.setMaxWidth(40);
-		tfRectWidth.setMaxWidth(40);
-		tfRectHeight.setMaxWidth(40);
+//		tfRectWidth.setMaxWidth(40);
+		tfSquareSide.setMaxWidth(40);
 		
 		// Create stack pane for stroke rectangle
 		StackPane stackPane = new StackPane();
@@ -97,7 +98,7 @@ public class MouseShapes extends Application {
 		
 		// Put them in a vbox
 		VBox vBox = new VBox(10);
-		vBox.getChildren().addAll(lRadius, tfCircleRad, lHeight, tfRectHeight, lWidth, tfRectWidth, stackPane);
+		vBox.getChildren().addAll(lRadius, tfCircleRad, lSide, tfSquareSide, stackPane);
 		vBox.setPadding(new Insets(5, 5, 5, 5));
 		vBox.setAlignment(Pos.CENTER);
 		vBox.setStyle("-fx-background-color: gray;");
@@ -116,7 +117,8 @@ public class MouseShapes extends Application {
 		Button btBlack = new Button("Black");
 		Button btGray = new Button("Gray");
 		
-		ArrayList<Button> colorBts = new ArrayList<>(Arrays.asList(btRed, btBlue, btGreen, btYellow, btOrange, btPurple, btPink, btBrown, btWhite, btBlack, btGray));
+		ArrayList<Button> colorBts = new ArrayList<>(Arrays.asList(btRed, btBlue, btGreen, btYellow, 
+				btOrange, btPurple, btPink, btBrown, btWhite, btBlack, btGray));
 		
 		// Change button sizes
 		for (int i = 0; i < colorBts.size(); i++) {
@@ -146,21 +148,24 @@ public class MouseShapes extends Application {
 		
 		// Change shape dimensions
 		tfCircleRad.setOnAction(e -> setRadius());
-		tfRectHeight.setOnAction(e -> {
-			setHeight();
+		tfSquareSide.setOnAction(e -> {
+			setSide();
 			
+			/*
 			if (tfRectWidth.getText() != null && !tfRectWidth.getText().isEmpty()) {
 				setWidth();
-			}
+			} */
 		});
 		
+		/*
 		tfRectWidth.setOnAction(e -> {
 			setWidth();
 			
-			if (tfRectHeight.getText() != null && !tfRectHeight.getText().isEmpty()) {
+			if (tfSquareSide.getText() != null && !tfSquareSide.getText().isEmpty()) {
 				setHeight();
 			}
-		});
+		}); */
+		
 		
 		
 		// Add or remove stroke
@@ -215,7 +220,7 @@ public class MouseShapes extends Application {
 		
 		
 		// Make rectangles
-		btRect.setOnAction(e -> {
+		btSquare.setOnAction(e -> {
 			// Remove start text and add new text
 			canvasPane.getChildren().remove(txtStart);
 
@@ -227,7 +232,7 @@ public class MouseShapes extends Application {
 				// Remove second start text
 //				pane.getChildren().remove(txtStart2);
 				
-				Rectangle rect = new Rectangle(rectWidth, rectHeight);
+				Rectangle rect = new Rectangle(squareSide, squareSide);
 				
 				// Set stroke
 				if (hasStroke) {
@@ -260,16 +265,22 @@ public class MouseShapes extends Application {
 		radius = Double.parseDouble(tfCircleRad.getText());
 	}
 	
+	/*
 	private void setWidth() {
 		rectWidth = Double.parseDouble(tfRectWidth.getText());
 	}
+	*/
 	
-	private void setHeight() {
-		rectHeight = Double.parseDouble(tfRectHeight.getText());
+	private void setSide() {
+		squareSide = Double.parseDouble(tfSquareSide.getText());
 	}
 	
 	public static void main(String[] args) {
 		launch(args);
 	}
+	
+}
+
+class CirclePane extends StackPane {
 	
 }
